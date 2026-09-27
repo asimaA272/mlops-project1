@@ -75,17 +75,14 @@ pipeline {
 
         stage('7 - Deployment Information') {
             steps {
-                sh '''
-                    echo "========================================="
-                    echo "       MLOPS DEPLOYMENT COMPLETE"
-                    echo "========================================="
-                    echo "Build Number : ${BUILD_NUMBER}"
-                    echo "Build Status : ${currentBuild.currentResult}"
-                    echo "Application  : http://localhost:${APP_PORT}"
-                    echo "Health Check : PASSED"
-                    echo "Docker Image : ${IMAGE_NAME}:${BUILD_NUMBER}"
-                    echo "========================================="
-                '''
+                echo "========================================="
+                echo "        MLOPS DEPLOYMENT COMPLETE        "
+                echo "========================================="
+                echo "Build Number : ${env.BUILD_NUMBER}"
+                echo "Build Status : SUCCESS"
+                echo "Application  : http://localhost:5000"
+                echo "Health Check : PASSED"
+                echo "========================================="
             }
         }
     }
