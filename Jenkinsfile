@@ -90,22 +90,12 @@ pipeline {
     post {
 
         success {
-            script {
-                def endTime = new Date().format(
-                    "yyyy-MM-dd HH:mm:ss",
-                    TimeZone.getDefault()
-                )
-
-                echo """
+            echo """
 =========================================
        MLOPS DEPLOYMENT SUCCESS
 =========================================
 Build Number : ${BUILD_NUMBER}
 Status       : SUCCESS
-
-Start Time   : ${new Date(currentBuild.startTimeInMillis)}
-End Time     : ${endTime}
-
 Duration     : ${currentBuild.durationString}
 
 Docker       : SUCCESS
@@ -113,40 +103,27 @@ Tests        : SUCCESS
 Health Check : SUCCESS
 Deployment   : SUCCESS
 
-Application:
-http://localhost:${APP_PORT}
+Application  : http://localhost:${APP_PORT}
 
 =========================================
        ALL WORK COMPLETED
 =========================================
 """
-            }
         }
 
         failure {
-            script {
-                def endTime = new Date().format(
-                    "yyyy-MM-dd HH:mm:ss",
-                    TimeZone.getDefault()
-                )
-
-                echo """
+            echo """
 =========================================
        MLOPS DEPLOYMENT FAILED
 =========================================
 Build Number : ${BUILD_NUMBER}
 Status       : FAILED
-
-Start Time   : ${new Date(currentBuild.startTimeInMillis)}
-End Time     : ${endTime}
-
 Duration     : ${currentBuild.durationString}
 
 Please check Jenkins Console Output.
 
 =========================================
 """
-            }
         }
 
         always {
